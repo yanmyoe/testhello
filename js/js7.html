@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Image Change</title>
+</head>
+<body>
+		<img src="logo2.png" width="100" height="100" >
+
+
+		
+
+	<script type="text/javascript">
+	
+const myimg=document.querySelector('img');
+console.log(myimg.getAttribute('src'));	
+  
+   myimg.onmouseover=function(){
+   	 myimg.setAttribute('width',400);
+   	 myimg.setAttribute('height',400);
+   }
+
+     myimg.onmouseout=function(){
+   	 myimg.setAttribute('width',100);
+   	 myimg.setAttribute('height',100);
+   	 imageslide();
+   }
+  
+    setInterval(imageslide,1000);
+
+   function imageslide(){
+   	 const mysrc=myimg.getAttribute('src');
+   	 if(mysrc=='logo2.png'){
+   	 	myimg.setAttribute('src','logo3.png');
+   	 }else if(mysrc=='logo3.png'){
+   	 	myimg.setAttribute('src','logo4.jpeg');
+   	 }else{
+   	 	myimg.setAttribute('src','logo2.png');
+   	 }
+   }
+
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS5</title>
+</head>
+<body>
+		<script type="text/javascript">
+			
+			var name1="Yan Myoe"; //  global
+			
+			let name2="Mr. yan";  // block 
+			
+			const name3="Mr. Aung";  // cannot redefine or edit value
+
+          //  name3="Mr. John";
+
+            function sayhi(mynumber){
+            	let name4="Mr. Paul";
+            	var name5="Mr. Kene";
+            	console.log('Name1: '+name1);
+            	console.log('Name2: '+name2);
+            	console.log('Name3: '+name3);
+            	if(mynumber%2){
+            		let greeting='Welcome!';
+            		console.log(greeting);
+            	}
+            console.log('Outside'+greeting);
+            }
+            	sayhi(5);
+            console.log('Name4: '+name1);
+            console.log('Name1: '+name2);
+		</script>
+</body>
+</html>

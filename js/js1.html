@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS Variable</title>
+	<script type="text/javascript">
+		// scope document / function scope
+       console.log(num1);
+		var num1=23;
+		console.log(num1);
+		var num1=45;
+		console.log(num1);
+		//
+      
+    // block scope
+      //  console.log(num2)
+		let num2=56;
+		console.log(num2);
+	//	let num2=67;
+		//console.log(num2);
+
+		if(num1>20){
+			let num3=num1;
+			console.log(num3);
+			console.log(num1);
+		}
+
+		console.log(num1);
+
+	</script>
+</head>
+<body>
+       <h1>JS Variable</h1>
+</body>
+</html>

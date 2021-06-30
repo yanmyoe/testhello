@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>DOM</title>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded',function(){
+			document.querySelector('h1').innerText='finished!';
+			fetch('http://api.exchangeratesapi.io/v1/latest?access_key=2032881820a2281da11c5876c5d3831e&format=1').then(response => response.json() )
+			.then(
+				data=>{
+						const rate=data.rates.MMK ;
+			document.querySelector('body').innerHTML=`1 Euro is ${rate} MMK `;
+				}
+				)
+		});
+	</script>
+</head>
+<body>
+			<h1>Hello</h1>
+</body>
+</html>

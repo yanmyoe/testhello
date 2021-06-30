@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS Clock</title>
+</head>
+<body>
+		Current Time: <label id="mytime"></label>
+
+		<button onclick="mytask=setTimeout(show,3000)">Click Me to Hi</button>
+		<button onclick="clearTimeout(mytask)">Click Me to stop</button>
+
+		<button onclick="showtime=setInterval(showTime,1000);">Start Clock</button>
+
+ 		<button onclick="clearInterval(showtime)">Stop Clock</button>
+	<script type="text/javascript">
+
+		function show(){
+			alert('hi');
+		}
+
+		
+		function showTime(){
+			const now=new Date();
+		const time=now.toLocaleTimeString();
+	document.querySelector('#mytime').innerHTML=time;
+
+		}
+		
+
+	</script>
+</body>
+</html>

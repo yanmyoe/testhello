@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS OOP</title>
+</head>
+<body>
+		<h1>JS OOP</h1>
+
+		<script type="text/javascript">
+			const person={
+				name : 'John' ,
+				age : 23 ,
+				interests: ['PHP','JS','CSS'],
+				greeting: function(){
+				console.log('My Name is '+ this.name + ' and '+this.age + ' Years old!');
+				}
+
+			}
+			console.log(person);
+			person.greeting();
+
+	const myjson='{"name":"Mg Mg","age":"23","address":"Yangon"}';
+	console.log(myjson);
+	console.log(JSON.parse(myjson));
+		</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

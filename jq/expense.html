@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Expense List</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#divAddExpense").show();
+			$("#divEditExpense").hide();
+
+			let i=1;
+			$("#btnAddExpense").click(function(){
+				let expenseName=$("#expenseName").val();
+				let expenseDate=$("#expenseDate").val();
+				let expenseAmount=$("#expenseAmount").val();
+		  // create an expense obj
+		  expense={
+		  	expenseName : expenseName ,
+		  	expenseAmount : expenseAmount ,
+		  	expenseDate : expenseDate,
+		  } ;
+		 // get expenselist in local storage
+	let expenselist_json=localStorage.getItem('expenselist');
+	if(!expenselist_json){
+		expenselist_json='{"expenselist":[]}';
+	}
+	// convert json to obj
+	expenselist_obj=JSON.parse(expenselist_json);
+	// push expense obj to expense list array
+	expenselist_obj.expenselist.push(expense);
+	console.log(expenselist_obj);
+    // store json string to localStorage
+   localStorage.setItem('expenselist',JSON.stringify(expenselist_obj));
+       showTable();
+	//	console.log(expenseName,expenseAmount,expenseDate);
+
+//let row=`<tr><td>${i}</td><td>${expenseName}</td><td>${expenseAmount}</td><td>${expenseDate}</td></tr>`;
+//	i++;
+//	$("tbody").append(row);
+			})
+
+			showTable();
+				function showTable(){
+			// get data from localStorage
+	let expenselist_json=localStorage.getItem('expenselist');
+			// JSON to obj
+   if(expenselist_json){
+   	 let expenselist_obj=JSON.parse(expenselist_json);
+   	 	// foreach
+   	 	let j=1 ; let html=''; let total=0;
+   	  $(expenselist_obj.expenselist).each(function(i,expense){
+   	  		
+   	  		let expenseAmount=expense.expenseAmount ;
+   	  		let expenseName=expense.expenseName;
+   	  		let expenseDate=expense.expenseDate;
+   	  		total+=parseInt(expenseAmount);
+let row=`<tr><td>${j}</td><td>${expenseDate}</td><td>${expenseName}</td><td>${expenseAmount}</td>
+	<td><button class='btnEdit' data-id=${i}>Edit</button></td>
+	<td><button class='btnDelete' data-id=${i}>Delete</button></td>
+</tr>`;   
+			html=html+row ;
+			j++;	  
+      })
+   html=html+`<tr><td colspan='3'>Total</td><td colspan='3'>${total}</td></tr>`;
+     $("tbody").html(html);
+
+   }
+		
+
+}
+
+		$("tbody").on('click','.btnDelete',function(){	
+				let id=$(this).data('id');
+			let ans=confirm('Are you sure ?');
+			if(ans){
+				// get data from localStorage
+     let expenselist_json=localStorage.getItem('expenselist');
+				// json to obj
+			if(expenselist_json){
+	let expenselist_obj=JSON.parse(expenselist_json);
+			// delete one array element using splice
+		expenselist_obj.expenselist.splice(id,1);
+				// set data at localStorage
+			localStorage.setItem('expenselist',JSON.stringify(expenselist_obj));
+			 showTable();
+
+			}
+				
+			}	
+
+		})
+
+
+		$("tbody").on('click','.btnEdit',function(){
+
+			$("#divEditExpense").show();
+			$("#divAddExpense").hide();
+			let id=$(this).data('id');
+			// get item from localstorage
+			let expenselist_json=localStorage.getItem('expenselist');
+			// json to obj
+			 let expenselist_obj=JSON.parse(expenselist_json);
+			// get one expense by key id
+			let expense=expenselist_obj.expenselist[id];
+			$("#updateid").val(id);
+			$("#updateexpenseName").val(expense.expenseName);
+			$("#updateexpenseDate").val(expense.expenseDate);
+			$("#updateexpenseAmount").val(expense.expenseAmount);
+
+		 })
+
+
+		$("#btnEditExpense").click(function(){
+				let updateid=$("#updateid").val();
+				let updateexpenseAmount=$("#updateexpenseAmount").val();
+				let updateexpenseName=$("#updateexpenseName").val();
+				let updateexpenseDate=$("#updateexpenseDate").val();
+			let expense={
+				expenseName : updateexpenseName ,
+				expenseAmount : updateexpenseAmount ,
+				expenseDate : updateexpenseDate 
+			};
+			// get json data from localStorage
+let expenselist_json=localStorage.getItem('expenselist');
+			// convert json to obj
+let expenselist_obj = JSON.parse(expenselist_json);
+			// update expense array element by key
+     expenselist_obj.expenselist[updateid]=expense;
+			// write obj to localStorage
+	localStorage.setItem('expenselist',JSON.stringify(expenselist_obj));
+	     $("#divAddExpense").show();
+	     $("#divEditExpense").hide();
+	     showTable();
+
+		})
+
+
+
+
+		})
+	</script>
+</head>
+<body>
+		<h1>Expense Registration Form</h1>
+
+	  <div id="divAddExpense">
+
+	  	 Name:<input type="text" id="expenseName"><br>
+	  	 Expense:<input type="number" id="expenseAmount"><Br>
+	  	 Date:<input type="date" id="expenseDate"><br>
+	  	 <input type="button" value="Add Expense" id="btnAddExpense">  	
+	  </div>
+
+	  	  <div id="divEditExpense">
+             <input type="hidden" id="updateid">
+	  	 Name:<input type="text" id="updateexpenseName"><br>
+	  	 Expense:<input type="number" id="updateexpenseAmount"><Br>
+	  	 Date:<input type="date" id="updateexpenseDate"><br>
+	  	 <input type="button" value="Edit Expense" id="btnEditExpense">  	
+	  </div>
+
+
+
+	  <div id="divExpenseTable">
+	  		<h1>Expense List</h1>
+	  		<table cellpadding="10" border="1">
+	  			<thead>
+	  				<tr>
+	  					<th>#</th>
+	  					<th>Date</th>
+	  					<th>Name</th>
+	  					<th>Expense</th>
+	  					<th>Edit</th>
+	  					<th>Delete</th>
+	  				</tr>
+	  			</thead>
+	  			<tbody>
+	  				
+	  			</tbody>
+	  		</table>
+	  </div>
+
+</body>
+</html>

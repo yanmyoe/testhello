@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS To Do List</title>
+</head>
+<body>
+		<h1>To do List</h1>
+
+		<ul id="tasks">
+			
+		</ul>
+
+		<form >
+				<input type="text" id="task">
+				<input type="submit" id="submit">	
+		</form>
+	<script type="text/javascript">
+   document.querySelector('#submit').disabled=true;
+   document.querySelector('#task').onkeyup=function(){
+   	 document.querySelector('#submit').disabled=false;
+   }
+	 const myform=document.querySelector('form');
+
+	 myform.onsubmit=function(){
+	 	//console.log('hi');
+     const task=document.querySelector('#task');
+
+     if(task.value.length){
+     	const li=document.createElement('li');
+      li.innerHTML=task.value;
+      const tasks=document.querySelector('#tasks');
+      tasks.append(li);
+
+     }
+     
+      task.value='';
+      document.querySelector('#submit').disabled=true;
+	 	return false;
+	 }
+	</script>
+
+</body>
+</html>

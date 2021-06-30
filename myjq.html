@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My JQ</title>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+	 //alert('Not Ready');   
+	$(document).ready(function(){
+		//alert('hi');
+        $("#hide").click(function(){
+        	$("h1").hide(1000);
+        })
+        $("#show").click(function(){
+        	$("h1").show("fast");
+        })
+           $(".blue").click(function(){
+           	  alert('You have clicked Blue Class');
+           	  $(".blue").text('Changed Text');
+           })
+
+           $(".red").click(function(){
+           	  alert('You have clicked Red Class!');
+           	  //$(".red").text('Edited Red Text')
+           	  var red_text= $(".red").html();
+           	  $(".blue").html(red_text);
+           })
+ 				$("#search").click(function(){
+ 						var keyword=$("#keyword").val();
+ 					$("p").text(keyword);
+ 				})
+
+ 				$("#btn_text").click(function(){
+ 			var myp="<p id='my_textp'>This is Generated Text, click me to check!</p>";
+ 					$("#mytable").html(myp);
+ 				})
+
+ 				$("#mytable").on('click','#my_textp',function(){
+ 						console.log('cicked!');
+ 				})
+	});
+</script>
+<style type="text/css">
+	.blue{color: blue;}
+	.red{color: red;}
+</style>
+</head>
+<body>
+	    <h1> Hello JQuery	</h1>
+	      <p class="blue">This is Blue Text</p>
+	      <p class="blue">This is another Blue Text</p>
+	      <p class="red">This is <b>Red</b> Text</p>
+	      <button id="hide">Click Me to Hide</button>
+	      <button id="show">Click Me to Show</button> <br> <Br>
+	      <input type="text" id="keyword" > <button id="search">Search</button>
+
+	      <br><br> <button id="btn_text">Generate Text</button>
+	      <div id="mytable">
+	      	    
+	      </div>
+ 		  
+
+
+</body>
+
+</html>

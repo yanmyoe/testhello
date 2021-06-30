@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS Condition and Looping</title>
+	<script type="text/javascript">
+		// alert('hi');
+		// prompt('hi');
+		// confirm('hi');
+		/*
+		var num1=prompt('Enter a number!');
+		var num2=prompt('Enter another number!');
+	console.log(parseInt(num1)+parseInt(num2));
+	console.log(num1-num2);
+	console.log(num1*num2);
+	console.log(num1/num2);
+	console.log(num1%num2); */
+	function calculate(){
+  var num1=document.myform.num1.value;
+  var num2=document.myform.num2.value;
+   console.log(num1+ ' => '+num2);	
+   document.myform.sum.value=parseInt(num1)+parseInt(num2);
+   document.myform.sub.value=num1-num2;
+   document.myform.mul.value=num1*num2;
+   document.myform.div.value=(num1/num2).toFixed(2);
+   document.myform.mod.value=num1%num2;
+      var sum=parseInt(num1)+parseInt(num2);
+    
+      if(sum>20){
+      	alert('Over 20');
+      }else{
+      	alert('Under 20');
+      }
+
+	}
+	</script>
+</head>
+<body>
+	<h1>Calculator</h1>
+	<form name="myform">
+First Number:<input type="number" name="num1"><Br>
+Second Number:<input type="number" name="num2"><br>
+<input type="button" value="Calculate" onclick="calculate()"> <br>
+SUM: <input type="number" name="sum"> <br>
+SUB: <input type="number" name="sub"> <br>
+MUL:<input type="number" name="mul"> <br>
+DIV:<input type="number" name="div" step=0.01> <Br>
+MOD: <input type="number" name="mod">
+
+	</form>
+
+</body>
+</html>

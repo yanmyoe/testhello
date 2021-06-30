@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Gold</title>
+</head>
+<body>
+<h1>Gold Gram to KPY and Total</h1>
+Gram Weight<input type="number" step="0.01" id=gramWeight> <Br>
+1 Kyat Thar <input type="number" id="oneKyat"><br>
+Kyat Pae Yway <input type="text" id="kyatpaeyway"><br>
+Total <input type="number" id="total"> <br>
+
+<script type="text/javascript">
+	const kyat_box=document.querySelector('#oneKyat');
+	kyat_box.onchange=function(){
+		console.log(kyat_box.value);
+		var gram_weight=document.querySelector('#gramWeight').value;
+		var kyat=calculate_kpy(gram_weight,16.606,'/');
+		var kyat_thar=kyat[0];
+		var pae=calculate_kpy(kyat[1],16,'*');
+		var pae_value=pae[0];
+		var yway=calculate_kpy(pae[1],8,'*');
+		console.log(yway);
+		var yway_value=yway[0];
+		document.querySelector('#kyatpaeyway').value=kyat_thar + ' - ' + pae_value + ' - ' + yway_value ;
+		var total=kyat_box.value*(kyat_thar+(pae_value/16)+(yway_value/128));
+		document.querySelector('#total').value=total.toFixed(0);
+
+	}
+
+	function calculate_kpy(weight_in_gram,value,operation){
+		if(operation=='/'){
+			var result=weight_in_gram/value;
+		}else{
+			var result=weight_in_gram*value;
+		}
+		var first_part=parseInt(result);
+		var second_part=(result - first_part ).toFixed(4);
+		return [first_part,second_part];
+	}
+
+
+
+
+
+</script>
+</body>
+</html>

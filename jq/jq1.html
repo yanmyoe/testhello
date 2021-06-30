@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JQuery</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+			  // alert('hello');
+			$(document).ready(function(){
+			//	alert('hi');
+			// alert(	$("h1").html() );
+			 $("h1").html('My JQuery HTML');
+			// alert($("p").text());
+
+				$("#name").val('Yan Myoe Aung');
+
+				$("#mybtn").click(function(){
+				//alert('hello btn');
+					alert($("#name").val());
+					$("p").hide("slow");
+		     	})
+
+		     	$("h1").click(function(){
+		     		$("p").show();
+		     	})
+
+		     	$("#btnappend").click(function(){
+		     		$("h1").append(' Append Text ');
+
+		     		$("h1").prepend(' Prepend Text ');
+		     	})
+
+			})
+
+			
+	</script>
+</head>
+<body>
+	<input type="text" id="name"><button id="mybtn">Submit</button>
+		<h1>Hello JQ</h1> <button id="btnappend">Append</button>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud <i>exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse </i>
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+
+
+</body>
+</html>

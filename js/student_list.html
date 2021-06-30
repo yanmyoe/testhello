@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Student List</title>
+</head>
+<body>
+       <h1>Student Registration Form</h1>
+       <form>
+       Name:<input type="text" id="name"><br>
+       City:<input type="text" id="city"><Br>
+       <input type="submit" name="">
+       </form>
+
+       <div>
+       	<h2>Student List</h2>
+       	  <table cellpadding="10" border="1">
+       	  	<thead>
+       	  		<tr>
+       	  			<th>No.</th>
+       	  			<th>Name</th>
+       	  			<th>City</th>
+       	  			<th>Edit</th>
+       	  			<th>Delete</th>
+       	  		</tr>
+       	  	</thead>
+       	  	<tbody>
+       	  		
+       	  	</tbody>
+       	  </table>
+       </div>
+
+       <script type="text/javascript">
+
+ document.querySelector('form').onsubmit=function(){
+       	 	let name=document.querySelector('#name').value;
+       	 	let city=document.querySelector('#city').value;
+       	 	if(name && city){
+       	 	// create object
+       	 		let student={
+       	 			name : name ,
+       	 			city : city
+       	 		};
+       	 	// get localstorage value  
+          let student_json=localStorage.getItem('studentlist');
+           // if there is no localstorage
+          if(!student_json){
+          	// create studentlist json 
+          	 student_json='{"studentlist":[]}';
+          }
+          	// json to obj
+           let student_list_obj=JSON.parse(student_json);
+           		console.log(student_list_obj);
+           	// push one student info to array
+           		student_list_obj.studentlist.push(student);
+           		console.log(student_list_obj);
+           	// store studentlist json string to localstorage
+         localStorage.setItem('studentlist', JSON.stringify(student_list_obj));
+         document.querySelector('#name').value='';
+         document.querySelector('#city').value='';
+         			showtable();
+       	 	}
+       	 	return false;
+       	 }
+
+       	 showtable();
+       	 function showtable(){
+       	 	// read from localstorage
+       	 let student_json=localStorage.getItem('studentlist');
+       	      if(student_json){
+       	      	// JSON parse to obj
+       	      	 let student_list_obj=JSON.parse(student_json);
+       	      	 // check length of studentlist array
+       	      	   if(student_list_obj.studentlist.length){
+       	      	   	// get studentlist array from obj
+       	      	   	   let studentlist_array=student_list_obj.studentlist;
+       	      	   	  // foreach loop to each item in array
+       	      	   	  let html=''; let i=1;
+       	      	   	   studentlist_array.forEach(function(student,id){
+       	      	   	   	 //  console.log(j,student);
+       	   let row=`<tr>
+       	   					<td>${i}</td>
+       	   					<td>${student.name}</td>
+       	   					<td>${student.city}</td>
+       	   					<td><button class='btnedit' data-id=${id}  >Edit</button></td>
+       	   					<td><button class='btndelete' data-id=${id}>Delete</button></td>
+       	   		    </tr>`;
+       	      	   	  html=html+row;
+       	      	   	   i++;  
+       	      	   	   })
+       	      	   document.querySelector('tbody').innerHTML=html;
+       	      	   }
+       	      }
+
+       	 }
+
+       	let delete_buttons= document.querySelectorAll('.btndelete') ;
+
+       	 for(const deletebutton of delete_buttons){
+       	 	deletebutton.addEventListener('click' , () => {
+       	 		let id=deletebutton.dataset.id 	;
+       	 		let ans=confirm('Are you sure to delete?');
+       	 		if(ans){
+       	 			// get localstorage value
+       	 		let student_json=localStorage.getItem('studentlist');
+       	 		if(student_json){
+       	 			// if student_json is not NULL parse to Obj
+       	 			student_list_obj=JSON.parse(student_json);
+       	 			 // splice one student from array
+       	 			student_list_obj.studentlist.splice(id,1);
+       	 			console.log(student_list_obj);
+       	 localStorage.setItem('studentlist',JSON.stringify(student_list_obj));
+       	 				showtable();
+                         location.reload();
+       	 		  }
+       	 		}
+       	 	})
+       	 }
+
+       	/*
+       	 var i=1;
+       	 document.querySelector('form').onsubmit=function(){
+       	 	let name=document.querySelector('#name').value;
+       	 	let city=document.querySelector('#city').value;
+       	 	if(name && city){
+       	 		console.log(name,city);
+       	 let row=`<tr><td>${i}</td><td>${name}</td><td>${city}</td></tr>`;
+       	 let html= document.querySelector('tbody').innerHTML ;
+       	 html=html+row;
+       	 document.querySelector('tbody').innerHTML=html;
+       	 		i++;
+
+       	 	}
+
+       	 	return false;
+       	 }
+       	 	*/
+
+
+       </script>
+</body>
+
+
+
+
+
+
+
+</html>

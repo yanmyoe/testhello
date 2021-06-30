@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Registration Form</title>
+</head>
+<body>
+		<h1>User Registration</h1>
+		<form method="post" action="check.php" enctype="multiplart/form-data" >
+	
+	<input type="number" name="id" value="40" disabled="disabled">
+	<fieldset>
+		<legend>Personal Info</legend>
+		Name:<input type="text" minlength="5" maxlength="30" name="name" required="required"><Br>
+	Email:<input type="email" name="email"><br>
+    Age:<input type="number" min="16" max="60" name="age"><br>
+    Height: <input type="number" name="height" step="0.001" min="4.000" max="8.000"> <br>
+    Address:<textarea rows="5" cols="50" name="address"></textarea> <br>
+
+	</fieldset>
+	
+    Marital Status: 
+   <label for="single"> Single </label>  <input type="radio" name="status" value="single" id="single" checked="checked">
+    <label for="married">Married</label> <input type="radio" name="status" value="married" id="married">
+
+    <br>Hobbies:
+    <label for="reading">Reading</label><input type="checkbox" name="reading" value="reading" id="reading">
+    <label for="coding">Coding</label><input type="checkbox" name="coding" value="coding" id="coding" checked="checked">
+    
+    <br> Eduction:
+    <select name="education" multiple="multiple">
+    	<option value="1"> Certificate </option>
+    	<option value="2"> Diploma </option>
+    	<option value="3" selected="selected"> Degree </option>
+    </select>
+
+   <Br> PHoto:
+   <input type="file" name="photo">
+ 
+   <br> Date of Birth
+   <input type="date" name="dob">
+
+	<Br> <input type="reset" value="Clear"> <input type="submit" value="Register">
+			
+		</form>
+</body>
+</html>

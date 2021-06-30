@@ -1,0 +1,30 @@
+
+
+
+1 kyat thar => 16.606 G
+
+1kyat thar => 16 pae 
+1 pae => 8 yway
+1 kyat thar => 16*8 => 128 yway
+
+input => gram => kyat pae yway
+
+gold = 20 g 
+
+Kyat thar= 1 / 
+
+0.2044 * 16 = 3.2704
+
+Pae = 3 
+
+0.2704 * 8 = 2.1632
+
+yway = 2
+
+20g = 1 kyat 3 pae 2 yway
+
+1 kyat = 1450000
+
+Total = 1kyat+ pae(1kyat/16) + yway(1kyat/128) ;
+
+

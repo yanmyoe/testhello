@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS DOM</title>
+<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded',function(){
+
+		const button= document.querySelectorAll('button');
+		console.log(button)
+		button.forEach(function(button){
+			button.onclick=function(){
+			document.querySelector('body').style.color=button.dataset.color;
+		   }
+		})
+	/*	const blue= document.querySelector('#blue') ;
+		 console.log(blue)
+		blue.onclick=function(){
+			document.querySelector('body').style.color = 'blue';
+		}
+		const red=document.querySelector('#red');
+		red.onclick=function(){
+			document.querySelector('body').style.color = 'red';
+		}
+*/
+
+	})
+</script>
+
+</head>
+<body>
+		<div>
+			<h1></h1>
+			<h2></h2>
+		</div>
+		<h1>Hi</h1>
+		<h2>This is H2</h2>
+		<h3 class="blue">My H3 Blue Class</h3>
+		<h3 id="secondh3">My Second H3</h3>
+		<p></p>
+		<button onclick="show()">Click Me</button>
+        <button id="blue" data-color="blue">Blue</button>
+        <button id="red" data-color="red">Red</button>
+
+        <h1>Tasks</h1>
+        <ul id="tasks">
+        	
+        </ul>
+
+        <form>
+        	<input type="text" id="task"> 
+        	<input type="submit" id="submit" >
+        </form>
+
+
+<script type="text/javascript">
+
+
+		function show(){
+			console.log('hi clicked !');
+	const myh1=document.querySelector('h1');
+	console.log(myh1.innerHTML);
+	const myh2=document.querySelector('h2');
+	console.log(myh2.innerHTML);
+	  myh2.innerHTML='My <i>New</i> Text';	
+	 const myh3=document.querySelector('h3');
+	  console.log(myh3);
+
+	 const myh3Tags=document.getElementsByTagName('h3');
+	 console.log(myh3Tags);
+
+const myp=document.querySelector('p');
+myp.innerHTML=myh1.innerHTML+' '+myh2.innerHTML+ ' '+myh3Tags[1].innerHTML;
+const mysecondh3=document.querySelector('#secondh3');
+	console.log(mysecondh3.innerHTML);
+const myblue=document.querySelector('.blue');
+	console.log(myblue.innerHTML);
+
+
+		}
+
+		document.querySelector('#submit').disabled=true;
+		document.querySelector('#task').onkeyup=function(){
+			document.querySelector('#submit').disabled=false;
+		}
+		document.querySelector('form').onsubmit=function(){
+		const task=document.querySelector('#task');
+		const li=document.createElement('li');
+		if(task.value.length){
+		li.innerHTML=task.value;
+		document.querySelector('#tasks').append(li);
+		task.value='';
+				document.querySelector('#submit').disabled=true;
+			}else{
+				document.querySelector('#submit').disabled=true;
+			}
+			return false;
+		}
+		
+//	const mybutton=document.querySelector('button');
+//	 mybutton.onclick=show;
+
+	</script>
+
+</body>
+</html>
